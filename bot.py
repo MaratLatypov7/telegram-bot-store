@@ -30,7 +30,7 @@ async def handle_category(update: Update, context: ContextTypes.DEFAULT_TYPE):
         with open(f"/mnt/data/{photo}", "rb") as img:
             await query.message.reply_photo(
                 photo=img,
-                caption=f"{name}
+                caption=f"{name}\nЦена: {price:,} RUB" 
 Цена: {price:,} UZS",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
