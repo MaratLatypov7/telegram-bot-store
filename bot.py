@@ -31,7 +31,7 @@ async def handle_category(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await query.message.reply_photo(
                 photo=img,
                 caption = f"{name}\nЦена: {price:,} RUB"
-                caption = f"{name}\nЦена: {price:,} RUB"
+            
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
 
