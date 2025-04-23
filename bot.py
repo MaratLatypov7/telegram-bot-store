@@ -3,6 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandle
 import os
 
 TOKEN = os.environ.get("YOUR_TOKEN")
+WEBHOOK_URL = os.environ.get("WEBHOOK_URL")  # Новый параметр
 
 products = {
     "Jacket/Skirt": [("Комплект с шерстью", "https://chat.openai.com/mnt/data/jacket_skirt.jpeg", 1200000)],
@@ -43,4 +44,9 @@ app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(handle_category, pattern="^cat:"))
 app.add_handler(CallbackQueryHandler(handle_purchase, pattern="^buy:"))
 
-app.run_polling()
+# Webhook запуск вместо polling
+app.run_webhook(
+    listen="0.0.0.0",
+    port=10000,
+    webhook_url=WEBHOOK_URL
+)
