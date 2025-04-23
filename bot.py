@@ -1,8 +1,8 @@
-
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
+import os
 
-TOKEN = "YOUR_TOKEN"
+TOKEN = os.environ.get("YOUR_TOKEN")
 
 products = {
     "Jacket/Skirt": [("Комплект с шерстью", "8A5413E2-636D-4098-AB5C-00EFFD38CE1E.jpeg", 1200000)],
@@ -30,8 +30,7 @@ async def handle_category(update: Update, context: ContextTypes.DEFAULT_TYPE):
         with open(f"/mnt/data/{photo}", "rb") as img:
             await query.message.reply_photo(
                 photo=img,
-                caption = f"{name}\nЦена: {price:,} RUB"
-            
+                caption=f"{name}\nЦена: {price:,} RUB",
                 reply_markup=InlineKeyboardMarkup(keyboard)
             )
 
